@@ -58,16 +58,6 @@ repositories {
     mavenLocal()
     mavenCentral()
 
-    flatDir {
-        dirs 'libs'
-    }
-
-    maven {
-        name "Amarok Maven"
-        url "http://maven.snowlyicewolf.club/"
-        allowInsecureProtocol true
-    }
-
     maven {
         name "Curse Maven"
         url "https://cursemaven.com"
@@ -76,6 +66,17 @@ repositories {
     maven {
         name "Modrinth Maven"
         url "https://api.modrinth.com/maven"
+    }
+
+
+    maven {
+        name "Amarok Maven"
+        url "http://maven.snowlyicewolf.club/"
+        allowInsecureProtocol true
+    }
+
+    flatDir {
+        dirs 'libs'
     }
 }
 
@@ -91,11 +92,16 @@ dependencies {
 
     implementation "club.someoneice.pineapplepsychic:pineapple-psychic:${project.psychic_version}"
     implementation "club.someoneice.togocup.pineapple_tag:pineapple-tag:${project.tags_version}"
-    implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:${project.recipe_book_version}"
+    // implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:${project.recipe_book_version}"
+
+
 
     implementation "maven.modrinth:notenoughitems-unofficial:${project.nei_version}-GTNH"
     implementation "maven.modrinth:codechickencore-unofficial:${project.cc_version}"
     implementation "maven.modrinth:codechickenlib-unofficial:${project.cc_version}"
+
+    implementation "curse.maven:Muya-530214:4364097"
+    implementation "curse.maven:ManaMetalMod-531708:5620586"
 
     implementation fileTree(dir: 'lib', includes: ['*.jar'])
 }
