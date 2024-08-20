@@ -7,7 +7,7 @@ buildscript {
         }
         maven {
             name = "forge"
-            url = "https://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
         maven {
             name = "sonatype"
@@ -92,9 +92,6 @@ dependencies {
 
     implementation "club.someoneice.pineapplepsychic:pineapple-psychic:${project.psychic_version}"
     implementation "club.someoneice.togocup.pineapple_tag:pineapple-tag:${project.tags_version}"
-    // implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:${project.recipe_book_version}"
-
-
 
     implementation "maven.modrinth:notenoughitems-unofficial:${project.nei_version}-GTNH"
     implementation "maven.modrinth:codechickencore-unofficial:${project.cc_version}"
@@ -103,7 +100,9 @@ dependencies {
     implementation "curse.maven:Muya-530214:4364097"
     implementation "curse.maven:ManaMetalMod-531708:5620586"
 
-    implementation fileTree(dir: 'lib', includes: ['*.jar'])
+    // implementation "curse.maven:trivialthoughts-967327:5621681"
+
+    // implementation fileTree(dir: 'libs', includes: ['*.jar'])
 }
 
 processResources {
