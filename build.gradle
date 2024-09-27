@@ -98,7 +98,7 @@ dependencies {
     implementation "maven.modrinth:codechickenlib-unofficial:${project.cc_version}"
 
     implementation "curse.maven:Muya-530214:4364097"
-    implementation "curse.maven:ManaMetalMod-531708:5620586"
+    implementation "curse.maven:ManaMetalMod-531708:5635003"
 
     // implementation "curse.maven:trivialthoughts-967327:5621681"
 

@@ -16,8 +16,8 @@ public class Config extends ConfigBeanV2 {
 
     public void init() {
         USE_NEW_CRAFTING_SYSTEM = this.getBoolean("UseNewCraftingSystem", USE_NEW_CRAFTING_SYSTEM);
+        USE_NEW_SORTING_CABINET = this.getBoolean("UseNewSortingCabinet", USE_NEW_SORTING_CABINET);
+
         SHOULD_DEPTH_SCAN_RECIPE = this.getBoolean("ShouldDeepScanRecipes", SHOULD_DEPTH_SCAN_RECIPE);
-
-
     }
 }

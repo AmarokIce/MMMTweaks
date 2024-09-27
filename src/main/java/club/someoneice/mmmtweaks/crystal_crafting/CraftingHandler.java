@@ -17,8 +17,7 @@ import java.util.*;
 
 @SuppressWarnings("unused")
 public final class CraftingHandler {
-    private CraftingHandler() {
-    }
+    private CraftingHandler() {}
 
     public static void checkRecipe(TileEntityCrystalZ tile, int time) {
         if (!tile.open || time % 20 != 0 || tile.getWorldObj().isRemote) {
@@ -36,11 +35,12 @@ public final class CraftingHandler {
 
         ChunkPosition pos = new ChunkPosition(tile.xCoord, tile.yCoord, tile.zCoord);
         DataCraftCrystal data = CraftingHelper.findCrystalData(pos, tile.target);
-        for (Pair<ImmutableList<Ingredient>, ItemStack> dataCach : data.getCaches()) {
-            if (scanInventory(tile, targetBox, dataCach)) {
-                return;
-            }
-        }
+        data.getCaches()
+                .entrySet()
+                .stream()
+                .map(it -> new Pair<>(it.getKey(), it.getValue()))
+                .filter(it -> scanInventory(tile, targetBox, it))
+                .findFirst();
     }
 
     private static boolean scanInventory(TileEntityCrystalZ tile, IInventory inventory, Pair<ImmutableList<Ingredient>, ItemStack> data) {
@@ -184,7 +184,7 @@ public final class CraftingHandler {
             if (parents.contains(ModMain.codecItemStack(stack))) {
                 continue;
             }
-            HashMap<ImmutableList<Ingredient>, ItemStack> cache = CraftingHelper.findCacheOrRegister(stack);
+            ImmutableMap<ImmutableList<Ingredient>, ItemStack> cache = CraftingHelper.findCacheOrRegister(stack);
             for (Map.Entry<ImmutableList<Ingredient>, ItemStack> entry : cache.entrySet()) {
                 List<Ingredient> ingredients = Lists.newArrayList(entry.getKey());
                 Iterator<Ingredient> ingredientIterator = ingredients.iterator();

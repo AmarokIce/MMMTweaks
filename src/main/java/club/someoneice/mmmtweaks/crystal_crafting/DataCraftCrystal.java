@@ -1,9 +1,8 @@
 package club.someoneice.mmmtweaks.crystal_crafting;
 
-import club.someoneice.json.Pair;
-import club.someoneice.json.PairList;
 import club.someoneice.togocup.tags.Ingredient;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -15,9 +14,9 @@ public final class DataCraftCrystal {
     private ItemStack itemStack;
     private int itemId;
     private int meta;
-    private PairList<ImmutableList<Ingredient>, ItemStack> caches;
+    private ImmutableMap<ImmutableList<Ingredient>, ItemStack> caches;
 
-    public DataCraftCrystal(int itemId, int meta, PairList<ImmutableList<Ingredient>, ItemStack> caches) {
+    public DataCraftCrystal(int itemId, int meta, ImmutableMap<ImmutableList<Ingredient>, ItemStack> caches) {
         this.itemStack = new ItemStack(Item.getItemById(itemId), 1, meta);
         this.itemId = itemId;
         this.meta = meta;
@@ -28,11 +27,7 @@ public final class DataCraftCrystal {
         this.itemStack = item;
         this.itemId = Item.getIdFromItem(item.getItem());
         this.meta = item.getItemDamage();
-        PairList<ImmutableList<Ingredient>, ItemStack> caches = new PairList<>();
-        CraftingHelper.findCacheOrRegister(item).entrySet().stream()
-                .map(enter -> new Pair<>(enter.getKey(), enter.getValue()))
-                .forEach(caches::add);
-        this.caches = caches;
+        this.caches = CraftingHelper.findCacheOrRegister(item);
     }
 
     public ItemStack getItemStack() {
@@ -59,11 +54,11 @@ public final class DataCraftCrystal {
         this.meta = meta;
     }
 
-    public PairList<ImmutableList<Ingredient>, ItemStack> getCaches() {
+    public ImmutableMap<ImmutableList<Ingredient>, ItemStack> getCaches() {
         return caches;
     }
 
-    public void setCaches(PairList<ImmutableList<Ingredient>, ItemStack> caches) {
+    public void setCaches(ImmutableMap<ImmutableList<Ingredient>, ItemStack> caches) {
         this.caches = caches;
     }
 
